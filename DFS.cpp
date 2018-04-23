@@ -2,13 +2,18 @@
 #include<fstream>
 #include<map>
 #include<set>
+#include<stack>
+
 using namespace std;
 //-------------DFS variable----------
 set<int> V;
 map<int ,set<int>  > A;
-map<int,int> p;
-map<int ,int> d;
+
+map<int,int> p;//cha của đỉnh d[v] là u
+map<int,int> d;//d[v] đỉnh đang đc thăm
+map<int,int> f;//thời điểm kết thúc thăm
 map<int,char> color;
+int t;//thời diderm thăm v
 //---------------*****---------------
 //------------Connected graph--------
 map <int,int> indexCC;
@@ -39,18 +44,25 @@ void init(){
 }
 
 void DFS_Visit(int u){
+	t++;
+	d[u] = t;
 	indexCC[u] = nbCC;
 	color[u] ='G';
-	for(set<int>::iterator p = A[u].begin(); p != A[u].end(); p++){
-		int v=*p;
-		if(color[v]='W'){
+	for(set<int>::iterator q = A[u].begin(); q != A[u].end(); q++){
+		int v = *q;
+		if(color[v]=='W'){
+			p[v] = u;
 			DFS_Visit(v);
 		}
 	}
+	t++;
+	f[u] =t;
 	color[u] = 'B';
 }
 
 void DFS(){
+	t=0;
+
 	init();
 	nbCC=0;
 	for(set<int>::iterator p = V.begin(); p != V.end(); p++){
@@ -88,13 +100,37 @@ void printConnectedGraph(){
 	cout<<endl;
 	}
 }
+// find Path from s to t
+void findPath(int s,int t){
+	init();
+	stack <int> S;
+	DFS_Visit(s);
+	if(color[t]=='W'){
+		cout<<"Not Find Path from "<< s << " to "<< t;
+		return;
+	}
+	while( t != s){
+		S.push(t);
+		t = p[t];
+	}
+	cout<< s;
+	while(!S.empty()){
+		cout<< "->" <<S.top();
+		S.pop();
+	}
+	//cout<<t;
+//	if()
 
+
+
+}
 
 int main(){
 	readData("graph-dfsV2.txt");
     printGraph();
     DFS();
 	printConnectedGraph();
+	findPath(1,7);
 
 
 

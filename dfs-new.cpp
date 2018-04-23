@@ -19,20 +19,20 @@ map<int ,int> indeCC;
 int nbCC;
 
 void DFSVisit(int u){
-    //t++;
-    //d[u] = t;
+    t++;
+    d[u] = t;
     indeCC[u] =nbCC;
     color[u] = 'G';
     for(set<int>::iterator q = A[u].begin(); q != A[u].end(); q++){
         int v = *q;
         if(color[v] == 'W'){
-      //      p[v] = u;
+            p[v] = u;
             DFSVisit(v);
         }
     }
-  //  t++;
-   // f[u] = t;
-    //color[u] = 'B';
+    t++;
+    f[u] = t;
+    color[u] = 'B';
 }
 void init(){
     for(set<int>::iterator q = V.begin(); q != V.end(); q++){
