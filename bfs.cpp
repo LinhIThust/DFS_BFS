@@ -30,15 +30,19 @@ void readData(char* filename){
     while(!f.eof()){
         int v;
         f >> v;
+
         if(v == -1) break;
+        cout<<v<<"  ";
         V.insert(v);
     }
-    while(!f.eof()){
+    cout<<endl;
+   while(!f.eof()){
         int u,v;
         f >> u;
         if(u == -1) break;
         f >> v;
         A[u].insert(v);
+        cout<<u<<"  "<<v<<endl;
     }
 }
 void printGraph(){
@@ -100,7 +104,7 @@ void findPath(int s, int t){
 
 int main(){
     readData("graph-dfs.txt");
-    printGraph();
+   // printGraph();
 //    DFS();
-    //findPath(1,7);
+    findPath(1,7);
 }

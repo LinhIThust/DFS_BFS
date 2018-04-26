@@ -1,0 +1,13 @@
+﻿Sắp xếp môn học
+ +, Cho tập N môn học từ 1->N
+ +, Cặp P thể hiện điều kiện tiên quyết bao gồm các cặp môn i,j  
+cho biết môn i fai học trước môn j
+ => Hãy đưa ra thứ tự các môn học sao cho với mỗi cặp [i,j]
+thì i học trước j
+
+đầu vào
+ +,dòng 1 ghi số môn học N
+ +,N dòng tiếp theo mỗi dòng ghi tên 1 môn kèm theo mã HP
+kết thúc băng số -1
+ +,Các dòng tiếp theo ghi cặp môn <i,j> như yêu cầu
+
